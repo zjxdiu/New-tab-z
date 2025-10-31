@@ -33,9 +33,9 @@
     "wallpaper": {
       "title": "壁纸",
       "none": "无",
-      "bing": "必应每日",
-      "fromUrl": "来自网址",
-      "upload": "上传",
+      "bing": "必应每日壁纸",
+      "fromUrl": "图像URL",
+      "upload": "上传文件",
       "chooseFile": "选择文件..."
     },
     "data": {
