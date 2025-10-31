@@ -21,7 +21,7 @@ This project is generated using [dyad](https://github.com/dyad-sh/dyad). Code wr
 	- Each shortcut has 4 props: Name, URL, Icon URL, and position index. 
 	- The index number is basically a priority value, which determines where this shortcut will be. Smaller index means "in front" of others. Index starts from 1 (may be changed later), and shorcuts with same index is allowed.
 3. Dark mode: Follow system by default, or set it to bright or dark theme as you want.
-4. Shortcut style: Change the background color and transparency for icons. Also affects settings button.
+4. Shortcut style: Change the background color & transparency, and rounding value for icons. Also affects settings button.
 5. Multilingual and easy i18n: Supports en-US and zh-CN for now, but it's easy to add more translation.
 6. Wallpaper: None by default, but supports Bing daily wallpaper, load from URL, or upload an image.
 7. Data management: Export or import all data. Useful when changing browser or clearing storage.
