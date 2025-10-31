@@ -34,7 +34,7 @@ Try or use it online: [Vercel]()
 
 ## To-do
 
-- [] Option to open shortcuts in-page.
+- [X] Option to open shortcuts in-page.
 - [] Able to change how many rows for shortcuts
 - [] Auto-hide the menu button of shorcuts when mouse is not hovered
 
