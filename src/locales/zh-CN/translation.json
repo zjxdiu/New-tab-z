@@ -23,7 +23,8 @@
     "shortcuts": {
       "title": "快捷方式",
       "columns": "列数",
-      "addNew": "添加新快捷方式"
+      "addNew": "添加新快捷方式",
+      "openInNewTab": "在新标签页中打开"
     },
     "appearance": {
       "title": "快捷方式外观",

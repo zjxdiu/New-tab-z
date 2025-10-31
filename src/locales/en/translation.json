@@ -23,7 +23,8 @@
     "shortcuts": {
       "title": "Shortcuts",
       "columns": "Columns",
-      "addNew": "Add New Shortcut"
+      "addNew": "Add New Shortcut",
+      "openInNewTab": "Open in new tab"
     },
     "appearance": {
       "title": "Shortcut Appearance",

@@ -19,6 +19,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { Shortcut } from '@/pages/Index';
 import { LanguageSelector } from './LanguageSelector';
 import { DataManagementSettings } from './DataManagementSettings';
+import { Switch } from '@/components/ui/switch';
 
 interface SettingsSheetProps {
   logoUrl: string;
@@ -37,6 +38,8 @@ interface SettingsSheetProps {
   setShortcuts: (shortcuts: Shortcut[]) => void;
   shortcutIconRounding: number;
   setShortcutIconRounding: (rounding: number) => void;
+  openInNewTab: boolean;
+  setOpenInNewTab: (open: boolean) => void;
   onImport: (settings: object) => void;
 }
 
@@ -55,6 +58,8 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   shortcutBackground,
   shortcutIconRounding,
   setShortcutIconRounding,
+  openInNewTab,
+  setOpenInNewTab,
   onImport,
 }) => {
   const { t } = useTranslation();
@@ -120,6 +125,16 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
                   />
                   <span className="text-sm text-muted-foreground w-8 text-center">{columns}</span>
                 </div>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border p-3">
+                <Label htmlFor="open-in-new-tab" className="pr-2">
+                  {t('settings.shortcuts.openInNewTab')}
+                </Label>
+                <Switch
+                  id="open-in-new-tab"
+                  checked={openInNewTab}
+                  onCheckedChange={setOpenInNewTab}
+                />
               </div>
               <Button variant="outline" onClick={onAddNew}>
                 <Plus className="mr-2 h-4 w-4" />

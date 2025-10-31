@@ -16,9 +16,10 @@ interface ShortcutIconProps {
   onDelete: () => void;
   backgroundColor: string;
   shortcutIconRounding: number;
+  openInNewTab: boolean;
 }
 
-const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete, backgroundColor, shortcutIconRounding }) => {
+const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete, backgroundColor, shortcutIconRounding, openInNewTab }) => {
   const { t } = useTranslation();
   const { href, iconUrl, name } = shortcut;
 
@@ -32,8 +33,8 @@ const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete,
     <div className="relative">
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={openInNewTab ? '_blank' : undefined}
+        rel={openInNewTab ? 'noopener noreferrer' : undefined}
         className="flex flex-col items-center justify-center p-2 rounded-lg transition-all group"
         style={{ backgroundColor }}
       >

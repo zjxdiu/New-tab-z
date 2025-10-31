@@ -18,6 +18,7 @@ const EXPORTABLE_KEYS = [
   'shortcutIconRounding',
   'theme',
   'i18nextLng',
+  'openInNewTab',
 ];
 
 export const DataManagementSettings: React.FC<DataManagementSettingsProps> = ({ onImport }) => {

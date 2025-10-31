@@ -54,6 +54,7 @@ const Index = () => {
   const [shortcutBgColor, setShortcutBgColor] = useLocalStorage<string>('shortcutBgColor', '#ffffff');
   const [shortcutBgOpacity, setShortcutBgOpacity] = useLocalStorage<number>('shortcutBgOpacity', 0.1);
   const [shortcutIconRounding, setShortcutIconRounding] = useLocalStorage<number>('shortcutIconRounding', 0);
+  const [openInNewTab, setOpenInNewTab] = useLocalStorage<boolean>('openInNewTab', true);
 
   const shortcutBackground = useMemo(() => {
     if (shortcutBgOpacity === 0) return 'transparent';
@@ -186,6 +187,7 @@ const Index = () => {
               onDelete={handleDelete}
               shortcutBackground={shortcutBackground}
               shortcutIconRounding={shortcutIconRounding}
+              openInNewTab={openInNewTab}
             />
           </div>
         </main>
@@ -206,6 +208,8 @@ const Index = () => {
           shortcutBackground={shortcutBackground}
           shortcutIconRounding={shortcutIconRounding}
           setShortcutIconRounding={setShortcutIconRounding}
+          openInNewTab={openInNewTab}
+          setOpenInNewTab={setOpenInNewTab}
           onImport={handleImportRequest}
         />
         <EditShortcutDialog
