@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import ShortcutGrid from '@/components/ShortcutGrid';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { SettingsSheet } from '@/components/SettingsSheet';
@@ -14,7 +15,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { WallpaperConfig } from '@/components/WallpaperSettings';
-import { showError } from '@/utils/toast';
+import { showError, showSuccess } from '@/utils/toast';
 import { hexToRgb } from '@/lib/utils';
 
 export interface Shortcut {
@@ -44,6 +45,7 @@ interface BingWallpaperCache {
 }
 
 const Index = () => {
+  const { t } = useTranslation();
   const [logoUrl, setLogoUrl] = useLocalStorage<string>('logoUrl', '/placeholder.svg');
   const [columns, setColumns] = useLocalStorage<number>('columns', 5);
   const [shortcuts, setShortcuts] = useLocalStorage<Shortcut[]>('shortcuts', initialShortcuts);
@@ -86,7 +88,7 @@ const Index = () => {
             setBackgroundImage(data.url);
           } catch (error) {
             console.error(error);
-            showError('Could not load Bing wallpaper.');
+            showError(t('toast.wallpaper.bingError'));
             setBackgroundImage(null);
           }
           break;
@@ -102,13 +104,34 @@ const Index = () => {
     };
 
     applyWallpaper();
-  }, [wallpaperConfig]);
+  }, [wallpaperConfig, t]);
 
   const [editingShortcut, setEditingShortcut] = useState<Shortcut | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   
   const [deletingShortcut, setDeletingShortcut] = useState<Shortcut | null>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
+  const [importingSettings, setImportingSettings] = useState<object | null>(null);
+  const [isImportDialogOpen, setIsImportDialogOpen] = useState(false);
+
+  const handleImportRequest = (settings: object) => {
+    setImportingSettings(settings);
+    setIsImportDialogOpen(true);
+  };
+
+  const confirmImport = () => {
+    if (importingSettings) {
+      Object.keys(importingSettings).forEach(key => {
+        const value = importingSettings[key as keyof typeof importingSettings];
+        localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+      });
+      setIsImportDialogOpen(false);
+      setImportingSettings(null);
+      showSuccess(t('toast.importSuccess'));
+      setTimeout(() => window.location.reload(), 1500);
+    }
+  };
 
   const handleAddNew = () => {
     setEditingShortcut(null);
@@ -183,6 +206,7 @@ const Index = () => {
           shortcutBackground={shortcutBackground}
           shortcutIconRounding={shortcutIconRounding}
           setShortcutIconRounding={setShortcutIconRounding}
+          onImport={handleImportRequest}
         />
         <EditShortcutDialog
           isOpen={isEditDialogOpen}
@@ -194,14 +218,28 @@ const Index = () => {
         <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+              <AlertDialogTitle>{t('dialog.delete.title')}</AlertDialogTitle>
               <AlertDialogDescription>
-                This will permanently delete the "{deletingShortcut?.name}" shortcut. This action cannot be undone.
+                {t('dialog.delete.description', { shortcutName: deletingShortcut?.name })}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={confirmDelete}>Delete</AlertDialogAction>
+              <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmDelete}>{t('common.delete')}</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <AlertDialog open={isImportDialogOpen} onOpenChange={setIsImportDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{t('dialog.import.title')}</AlertDialogTitle>
+              <AlertDialogDescription>
+                {t('dialog.import.description')}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmImport}>{t('settings.data.import')}</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

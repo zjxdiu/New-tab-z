@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -17,15 +18,16 @@ interface WallpaperSettingsProps {
   setWallpaperConfig: (config: WallpaperConfig) => void;
 }
 
-const wallpaperOptions = [
-  { type: 'none', label: 'None', icon: Ban },
-  { type: 'bing', label: 'Bing Daily', icon: ImageIcon },
-  { type: 'url', label: 'From URL', icon: Link },
-  { type: 'file', label: 'Upload', icon: Upload },
-] as const;
-
 export const WallpaperSettings: React.FC<WallpaperSettingsProps> = ({ wallpaperConfig, setWallpaperConfig }) => {
+  const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const wallpaperOptions = [
+    { type: 'none', label: t('settings.wallpaper.none'), icon: Ban },
+    { type: 'bing', label: t('settings.wallpaper.bing'), icon: ImageIcon },
+    { type: 'url', label: t('settings.wallpaper.fromUrl'), icon: Link },
+    { type: 'file', label: t('settings.wallpaper.upload'), icon: Upload },
+  ] as const;
 
   const handleTypeChange = (type: WallpaperConfig['type']) => {
     if (type === 'url' && !wallpaperConfig.value?.startsWith('http')) {
@@ -46,7 +48,7 @@ export const WallpaperSettings: React.FC<WallpaperSettingsProps> = ({ wallpaperC
     if (!file) return;
 
     if (file.size > 5 * 1024 * 1024) { // 5MB limit
-      showError('File size should not exceed 5MB.');
+      showError(t('toast.wallpaper.uploadErrorFileSize'));
       return;
     }
 
@@ -54,10 +56,10 @@ export const WallpaperSettings: React.FC<WallpaperSettingsProps> = ({ wallpaperC
     reader.onload = (e) => {
       const result = e.target?.result as string;
       setWallpaperConfig({ type: 'file', value: result });
-      showSuccess('Wallpaper uploaded successfully.');
+      showSuccess(t('toast.wallpaper.uploadSuccess'));
     };
     reader.onerror = () => {
-      showError('Failed to read the file.');
+      showError(t('toast.wallpaper.uploadErrorFileRead'));
     };
     reader.readAsDataURL(file);
     event.target.value = ''; // Reset file input
@@ -65,7 +67,7 @@ export const WallpaperSettings: React.FC<WallpaperSettingsProps> = ({ wallpaperC
 
   return (
     <div className="border-t pt-6 grid gap-4">
-      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Wallpaper</h3>
+      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('settings.wallpaper.title')}</h3>
       <div className="grid grid-cols-2 gap-2">
         {wallpaperOptions.map((option) => {
           const Icon = option.icon;
@@ -90,7 +92,7 @@ export const WallpaperSettings: React.FC<WallpaperSettingsProps> = ({ wallpaperC
       {wallpaperConfig.type === 'url' && (
         <div className="grid grid-cols-4 items-center gap-4 pt-2">
           <Label htmlFor="wallpaper-url" className="text-right col-span-1">
-            URL
+            {t('common.url')}
           </Label>
           <Input
             id="wallpaper-url"
@@ -105,7 +107,7 @@ export const WallpaperSettings: React.FC<WallpaperSettingsProps> = ({ wallpaperC
       {wallpaperConfig.type === 'file' && (
         <div className="pt-2">
           <Button variant="outline" className="w-full" onClick={() => fileInputRef.current?.click()}>
-            Choose File...
+            {t('settings.wallpaper.chooseFile')}
           </Button>
           <input
             type="file"

@@ -1,0 +1,84 @@
+{
+  "common": {
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "url": "网址"
+  },
+  "settings": {
+    "title": "设置",
+    "general": {
+      "title": "通用",
+      "logoUrl": "Logo 网址",
+      "language": "语言",
+      "theme": {
+        "title": "主题",
+        "placeholder": "选择主题",
+        "light": "明亮",
+        "dark": "黑暗",
+        "system": "跟随系统"
+      }
+    },
+    "shortcuts": {
+      "title": "快捷方式",
+      "columns": "列数",
+      "addNew": "添加新快捷方式"
+    },
+    "appearance": {
+      "title": "快捷方式外观",
+      "style": "样式",
+      "rounding": "圆角"
+    },
+    "wallpaper": {
+      "title": "壁纸",
+      "none": "无",
+      "bing": "必应每日",
+      "fromUrl": "来自网址",
+      "upload": "上传",
+      "chooseFile": "选择文件..."
+    },
+    "data": {
+      "title": "数据管理",
+      "export": "导出数据",
+      "import": "导入数据"
+    }
+  },
+  "dialog": {
+    "editShortcut": {
+      "titleEdit": "编辑快捷方式",
+      "titleAdd": "添加快捷方式",
+      "descriptionEdit": "在此处更改您的快捷方式。",
+      "descriptionAdd": "向您的网格添加一个新的快捷方式。",
+      "name": "名称",
+      "iconUrl": "图标网址",
+      "position": "位置",
+      "errors": {
+        "nameRequired": "名称是必填项。",
+        "hrefInvalid": "必须是有效的网址。",
+        "iconUrlInvalid": "必须是有效的图标网址。",
+        "positionInvalid": "位置必须至少为 1。"
+      }
+    },
+    "delete": {
+      "title": "您确定吗？",
+      "description": "这将永久删除“{{shortcutName}}”快捷方式。此操作无法撤销。"
+    },
+    "import": {
+      "title": "导入设置",
+      "description": "您确定要导入设置吗？这将覆盖您当前的所有设置。"
+    }
+  },
+  "toast": {
+    "wallpaper": {
+      "uploadSuccess": "壁纸上传成功。",
+      "uploadErrorFileRead": "读取文件失败。",
+      "uploadErrorFileSize": "文件大小不应超过 5MB。",
+      "bingError": "无法加载必应壁纸。"
+    },
+    "exportSuccess": "设置已成功导出。",
+    "exportError": "导出设置失败。",
+    "importSuccess": "设置导入成功。页面即将刷新。",
+    "importErrorInvalidFile": "导入失败。所选文件无效。"
+  }
+}

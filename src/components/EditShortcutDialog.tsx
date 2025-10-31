@@ -21,15 +21,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Shortcut } from '@/pages/Index';
 import { useEffect } from 'react';
-
-const formSchema = z.object({
-  name: z.string().min(1, 'Name is required.'),
-  href: z.string().url('Must be a valid URL.'),
-  iconUrl: z.string().url('Must be a valid URL.'),
-  position: z.coerce.number().min(1, 'Position must be at least 1.'),
-});
-
-type ShortcutFormValues = z.infer<typeof formSchema>;
+import { useTranslation } from 'react-i18next';
 
 interface EditShortcutDialogProps {
   shortcut: Shortcut | null;
@@ -46,6 +38,17 @@ export const EditShortcutDialog: React.FC<EditShortcutDialogProps> = ({
   onSave,
   shortcutCount,
 }) => {
+  const { t } = useTranslation();
+
+  const formSchema = z.object({
+    name: z.string().min(1, t('dialog.editShortcut.errors.nameRequired')),
+    href: z.string().url(t('dialog.editShortcut.errors.hrefInvalid')),
+    iconUrl: z.string().url(t('dialog.editShortcut.errors.iconUrlInvalid')),
+    position: z.coerce.number().min(1, t('dialog.editShortcut.errors.positionInvalid')),
+  });
+
+  type ShortcutFormValues = z.infer<typeof formSchema>;
+
   const form = useForm<ShortcutFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -81,9 +84,9 @@ export const EditShortcutDialog: React.FC<EditShortcutDialogProps> = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{shortcut ? 'Edit Shortcut' : 'Add Shortcut'}</DialogTitle>
+          <DialogTitle>{shortcut ? t('dialog.editShortcut.titleEdit') : t('dialog.editShortcut.titleAdd')}</DialogTitle>
           <DialogDescription>
-            {shortcut ? 'Make changes to your shortcut here.' : 'Add a new shortcut to your grid.'}
+            {shortcut ? t('dialog.editShortcut.descriptionEdit') : t('dialog.editShortcut.descriptionAdd')}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -93,7 +96,7 @@ export const EditShortcutDialog: React.FC<EditShortcutDialogProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t('dialog.editShortcut.name')}</FormLabel>
                   <FormControl>
                     <Input placeholder="e.g. Google" {...field} />
                   </FormControl>
@@ -106,7 +109,7 @@ export const EditShortcutDialog: React.FC<EditShortcutDialogProps> = ({
               name="href"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>URL</FormLabel>
+                  <FormLabel>{t('common.url')}</FormLabel>
                   <FormControl>
                     <Input placeholder="https://google.com" {...field} />
                   </FormControl>
@@ -119,7 +122,7 @@ export const EditShortcutDialog: React.FC<EditShortcutDialogProps> = ({
               name="iconUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Icon URL</FormLabel>
+                  <FormLabel>{t('dialog.editShortcut.iconUrl')}</FormLabel>
                   <FormControl>
                     <Input placeholder="https://google.com/favicon.ico" {...field} />
                   </FormControl>
@@ -132,7 +135,7 @@ export const EditShortcutDialog: React.FC<EditShortcutDialogProps> = ({
               name="position"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Position</FormLabel>
+                  <FormLabel>{t('dialog.editShortcut.position')}</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="e.g. 1" {...field} />
                   </FormControl>
@@ -142,9 +145,9 @@ export const EditShortcutDialog: React.FC<EditShortcutDialogProps> = ({
             />
             <DialogFooter>
               <Button type="button" variant="ghost" onClick={onClose}>
-                Cancel
+                {t('common.cancel')}
               </Button>
-              <Button type="submit">Save</Button>
+              <Button type="submit">{t('common.save')}</Button>
             </DialogFooter>
           </form>
         </Form>

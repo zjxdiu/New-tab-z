@@ -1,0 +1,84 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "url": "URL"
+  },
+  "settings": {
+    "title": "Settings",
+    "general": {
+      "title": "General",
+      "logoUrl": "Logo URL",
+      "language": "Language",
+      "theme": {
+        "title": "Theme",
+        "placeholder": "Select theme",
+        "light": "Bright",
+        "dark": "Dark",
+        "system": "Follow system"
+      }
+    },
+    "shortcuts": {
+      "title": "Shortcuts",
+      "columns": "Columns",
+      "addNew": "Add New Shortcut"
+    },
+    "appearance": {
+      "title": "Shortcut Appearance",
+      "style": "Style",
+      "rounding": "Rounding"
+    },
+    "wallpaper": {
+      "title": "Wallpaper",
+      "none": "None",
+      "bing": "Bing Daily",
+      "fromUrl": "From URL",
+      "upload": "Upload",
+      "chooseFile": "Choose File..."
+    },
+    "data": {
+      "title": "Data Management",
+      "export": "Export Data",
+      "import": "Import Data"
+    }
+  },
+  "dialog": {
+    "editShortcut": {
+      "titleEdit": "Edit Shortcut",
+      "titleAdd": "Add Shortcut",
+      "descriptionEdit": "Make changes to your shortcut here.",
+      "descriptionAdd": "Add a new shortcut to your grid.",
+      "name": "Name",
+      "iconUrl": "Icon URL",
+      "position": "Position",
+      "errors": {
+        "nameRequired": "Name is required.",
+        "hrefInvalid": "Must be a valid URL.",
+        "iconUrlInvalid": "Must be a valid URL.",
+        "positionInvalid": "Position must be at least 1."
+      }
+    },
+    "delete": {
+      "title": "Are you sure?",
+      "description": "This will permanently delete the \"{{shortcutName}}\" shortcut. This action cannot be undone."
+    },
+    "import": {
+      "title": "Import Settings",
+      "description": "Are you sure you want to import settings? This will overwrite all your current settings."
+    }
+  },
+  "toast": {
+    "wallpaper": {
+      "uploadSuccess": "Wallpaper uploaded successfully.",
+      "uploadErrorFileRead": "Failed to read the file.",
+      "uploadErrorFileSize": "File size should not exceed 5MB.",
+      "bingError": "Could not load Bing wallpaper."
+    },
+    "exportSuccess": "Settings exported successfully.",
+    "exportError": "Failed to export settings.",
+    "importSuccess": "Settings imported successfully. The page will now reload.",
+    "importErrorInvalidFile": "Import failed. The selected file is invalid."
+  }
+}

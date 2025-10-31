@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
@@ -22,11 +23,12 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
   shortcutIconRounding,
   setShortcutIconRounding,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="border-t pt-6 grid gap-4">
-      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Shortcut Appearance</h3>
+      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">{t('settings.appearance.title')}</h3>
       <div className="grid grid-cols-4 items-center gap-4">
-        <Label className="text-right col-span-1">Style</Label>
+        <Label className="text-right col-span-1">{t('settings.appearance.style')}</Label>
         <div className="col-span-3 flex items-center gap-4">
           <Popover>
             <PopoverTrigger asChild>
@@ -69,7 +71,7 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="rounding" className="text-right col-span-1">
-          Rounding
+          {t('settings.appearance.rounding')}
         </Label>
         <div className="col-span-3 flex items-center gap-4">
           <Slider

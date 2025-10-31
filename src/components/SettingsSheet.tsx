@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Settings, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,6 +17,8 @@ import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { ThemeToggle } from './ThemeToggle';
 import { Shortcut } from '@/pages/Index';
+import { LanguageSelector } from './LanguageSelector';
+import { DataManagementSettings } from './DataManagementSettings';
 
 interface SettingsSheetProps {
   logoUrl: string;
@@ -34,6 +37,7 @@ interface SettingsSheetProps {
   setShortcuts: (shortcuts: Shortcut[]) => void;
   shortcutIconRounding: number;
   setShortcutIconRounding: (rounding: number) => void;
+  onImport: (settings: object) => void;
 }
 
 export const SettingsSheet: React.FC<SettingsSheetProps> = ({
@@ -51,7 +55,9 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   shortcutBackground,
   shortcutIconRounding,
   setShortcutIconRounding,
+  onImport,
 }) => {
+  const { t } = useTranslation();
   const settingsButtonBorderRadius = useMemo(() => {
     const maxRadius = 20; // half of width/height (40px for size="icon")
     const radius = maxRadius * (1 - shortcutIconRounding / 100);
@@ -72,15 +78,15 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-md overflow-y-auto">
         <SheetHeader>
-          <SheetTitle>Settings</SheetTitle>
+          <SheetTitle>{t('settings.title')}</SheetTitle>
         </SheetHeader>
         <div className="py-6 grid gap-6">
           <div>
-            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">General</h3>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">{t('settings.general.title')}</h3>
             <div className="grid gap-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="logo-url" className="text-right col-span-1">
-                  Logo URL
+                  {t('settings.general.logoUrl')}
                 </Label>
                 <Input
                   id="logo-url"
@@ -90,17 +96,18 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
                 />
               </div>
               <ThemeToggle />
+              <LanguageSelector />
             </div>
           </div>
 
           <Separator />
 
           <div>
-            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">Shortcuts</h3>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">{t('settings.shortcuts.title')}</h3>
             <div className="grid gap-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="columns" className="text-right col-span-1">
-                  Columns
+                  {t('settings.shortcuts.columns')}
                 </Label>
                 <div className="col-span-3 flex items-center gap-4">
                   <Slider
@@ -116,7 +123,7 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
               </div>
               <Button variant="outline" onClick={onAddNew}>
                 <Plus className="mr-2 h-4 w-4" />
-                Add New Shortcut
+                {t('settings.shortcuts.addNew')}
               </Button>
             </div>
           </div>
@@ -134,6 +141,8 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
             wallpaperConfig={wallpaperConfig}
             setWallpaperConfig={setWallpaperConfig}
           />
+
+          <DataManagementSettings onImport={onImport} />
         </div>
       </SheetContent>
     </Sheet>

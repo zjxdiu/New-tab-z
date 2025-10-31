@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +19,7 @@ interface ShortcutIconProps {
 }
 
 const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete, backgroundColor, shortcutIconRounding }) => {
+  const { t } = useTranslation();
   const { href, iconUrl, name } = shortcut;
 
   const borderRadius = useMemo(() => {
@@ -51,9 +53,9 @@ const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete,
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem onClick={onEdit}>Edit</DropdownMenuItem>
+            <DropdownMenuItem onClick={onEdit}>{t('common.edit')}</DropdownMenuItem>
             <DropdownMenuItem onClick={onDelete} className="text-red-500">
-              Delete
+              {t('common.delete')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
