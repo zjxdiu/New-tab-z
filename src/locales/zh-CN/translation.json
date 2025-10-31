@@ -10,7 +10,7 @@
     "title": "设置",
     "general": {
       "title": "通用",
-      "logoUrl": "Logo 网址",
+      "logoUrl": "Logo URL",
       "language": "语言",
       "theme": {
         "title": "主题",
@@ -51,8 +51,8 @@
       "descriptionEdit": "在此处更改您的快捷方式。",
       "descriptionAdd": "添加一个新的快捷方式。",
       "name": "名称",
-      "iconUrl": "图标网址",
-      "position": "位置",
+      "iconUrl": "图标URL",
+      "position": "位置序号",
       "errors": {
         "nameRequired": "名称是必填项。",
         "hrefInvalid": "必须是有效的网址。",
