@@ -51,6 +51,7 @@ const Index = () => {
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
   const [shortcutBgColor, setShortcutBgColor] = useLocalStorage<string>('shortcutBgColor', '#ffffff');
   const [shortcutBgOpacity, setShortcutBgOpacity] = useLocalStorage<number>('shortcutBgOpacity', 0.1);
+  const [shortcutIconRounding, setShortcutIconRounding] = useLocalStorage<number>('shortcutIconRounding', 0);
 
   const shortcutBackground = useMemo(() => {
     if (shortcutBgOpacity === 0) return 'transparent';
@@ -161,6 +162,7 @@ const Index = () => {
               onEdit={handleEdit}
               onDelete={handleDelete}
               shortcutBackground={shortcutBackground}
+              shortcutIconRounding={shortcutIconRounding}
             />
           </div>
         </main>
@@ -178,7 +180,9 @@ const Index = () => {
           setShortcutBgColor={setShortcutBgColor}
           shortcutBgOpacity={shortcutBgOpacity}
           setShortcutBgOpacity={setShortcutBgOpacity}
-          shortcutBackground={shortcutBackground} // Pass the calculated background
+          shortcutBackground={shortcutBackground}
+          shortcutIconRounding={shortcutIconRounding}
+          setShortcutIconRounding={setShortcutIconRounding}
         />
         <EditShortcutDialog
           isOpen={isEditDialogOpen}

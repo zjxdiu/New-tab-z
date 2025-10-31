@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Settings, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -32,6 +32,8 @@ interface SettingsSheetProps {
   shortcutBackground: string;
   shortcuts: Shortcut[];
   setShortcuts: (shortcuts: Shortcut[]) => void;
+  shortcutIconRounding: number;
+  setShortcutIconRounding: (rounding: number) => void;
 }
 
 export const SettingsSheet: React.FC<SettingsSheetProps> = ({
@@ -47,15 +49,23 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   shortcutBgOpacity,
   setShortcutBgOpacity,
   shortcutBackground,
+  shortcutIconRounding,
+  setShortcutIconRounding,
 }) => {
+  const settingsButtonBorderRadius = useMemo(() => {
+    const maxRadius = 20; // half of width/height (40px for size="icon")
+    const radius = maxRadius * (1 - shortcutIconRounding / 100);
+    return `${radius}px`;
+  }, [shortcutIconRounding]);
+
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
-          className="fixed top-4 right-4 rounded-full shadow-lg"
-          style={{ backgroundColor: shortcutBackground }}
+          className="fixed top-4 right-4 shadow-lg"
+          style={{ backgroundColor: shortcutBackground, borderRadius: settingsButtonBorderRadius }}
         >
           <Settings className="h-5 w-5" />
         </Button>
@@ -116,6 +126,8 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
             setBgColor={setShortcutBgColor}
             bgOpacity={shortcutBgOpacity}
             setBgOpacity={setShortcutBgOpacity}
+            shortcutIconRounding={shortcutIconRounding}
+            setShortcutIconRounding={setShortcutIconRounding}
           />
 
           <WallpaperSettings

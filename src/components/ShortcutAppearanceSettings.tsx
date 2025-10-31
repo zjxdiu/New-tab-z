@@ -10,6 +10,8 @@ interface ShortcutAppearanceSettingsProps {
   setBgColor: (color: string) => void;
   bgOpacity: number;
   setBgOpacity: (opacity: number) => void;
+  shortcutIconRounding: number;
+  setShortcutIconRounding: (rounding: number) => void;
 }
 
 export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProps> = ({
@@ -17,6 +19,8 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
   setBgColor,
   bgOpacity,
   setBgOpacity,
+  shortcutIconRounding,
+  setShortcutIconRounding,
 }) => {
   return (
     <div className="border-t pt-6 grid gap-4">
@@ -61,6 +65,24 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
               {Math.round(bgOpacity * 100)}%
             </span>
           </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="rounding" className="text-right col-span-1">
+          Rounding
+        </Label>
+        <div className="col-span-3 flex items-center gap-4">
+          <Slider
+            id="rounding"
+            min={0}
+            max={100}
+            step={1}
+            value={[shortcutIconRounding]}
+            onValueChange={(value) => setShortcutIconRounding(value[0])}
+          />
+          <span className="text-sm text-muted-foreground w-10 text-center">
+            {shortcutIconRounding}
+          </span>
         </div>
       </div>
     </div>

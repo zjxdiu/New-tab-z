@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,10 +14,18 @@ interface ShortcutIconProps {
   onEdit: () => void;
   onDelete: () => void;
   backgroundColor: string;
+  shortcutIconRounding: number;
 }
 
-const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete, backgroundColor }) => {
+const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete, backgroundColor, shortcutIconRounding }) => {
   const { href, iconUrl, name } = shortcut;
+
+  const borderRadius = useMemo(() => {
+    const maxRadius = 24; // half of width/height (48px)
+    const radius = maxRadius * (1 - shortcutIconRounding / 100);
+    return `${radius}px`;
+  }, [shortcutIconRounding]);
+
   return (
     <div className="relative">
       <a
@@ -27,7 +35,10 @@ const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete,
         className="flex flex-col items-center justify-center p-2 rounded-lg transition-all group"
         style={{ backgroundColor }}
       >
-        <div className="w-12 h-12 flex items-center justify-center bg-gray-200/50 dark:bg-gray-700/50 rounded-full mb-2 group-hover:shadow-md transition-shadow">
+        <div
+          className="w-12 h-12 flex items-center justify-center bg-gray-200/50 dark:bg-gray-700/50 mb-2 group-hover:shadow-md transition-shadow"
+          style={{ borderRadius }}
+        >
           <img src={iconUrl} alt={name} className="w-8 h-8 object-contain" />
         </div>
         <span className="text-sm text-gray-800 dark:text-gray-200 truncate w-full text-center">{name}</span>

@@ -8,9 +8,10 @@ interface ShortcutGridProps {
   onEdit: (shortcut: Shortcut) => void;
   onDelete: (shortcut: Shortcut) => void;
   shortcutBackground: string;
+  shortcutIconRounding: number;
 }
 
-const ShortcutGrid: React.FC<ShortcutGridProps> = ({ shortcuts, columns = 5, onEdit, onDelete, shortcutBackground }) => {
+const ShortcutGrid: React.FC<ShortcutGridProps> = ({ shortcuts, columns = 5, onEdit, onDelete, shortcutBackground, shortcutIconRounding }) => {
   const sortedShortcuts = React.useMemo(
     () => [...shortcuts].sort((a, b) => a.position - b.position),
     [shortcuts]
@@ -28,6 +29,7 @@ const ShortcutGrid: React.FC<ShortcutGridProps> = ({ shortcuts, columns = 5, onE
           onEdit={() => onEdit(shortcut)}
           onDelete={() => onDelete(shortcut)}
           backgroundColor={shortcutBackground}
+          shortcutIconRounding={shortcutIconRounding}
         />
       ))}
     </div>
