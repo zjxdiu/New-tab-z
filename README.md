@@ -28,9 +28,9 @@ This project is generated using [dyad](https://github.com/dyad-sh/dyad). Code wr
 
 ## How to use
 
-Download from releases, then deploy it as static website. Google "how to deploy static webpage" if you don't know how.
+Download from [releases](https://github.com/zjxdiu/New-tab-z/releases), then deploy it as static website. Google "how to deploy static webpage" if you don't know how.
 
-Try or use it online: [Vercel]()
+Try or use it online: [Vercel](https://new-tab-z-sigma.vercel.app/)
 
 ## To-do
 
