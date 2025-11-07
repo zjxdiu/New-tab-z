@@ -179,7 +179,7 @@ const Index = () => {
           <div className="mb-12">
             <img src={logoUrl} alt="Logo" className="h-24" />
           </div>
-          <div className="w-full max-w-xl">
+          <div className="w-full max-w-4xl">
             <ShortcutGrid
               shortcuts={shortcuts}
               columns={columns}
