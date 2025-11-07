@@ -30,7 +30,8 @@
       "title": "快捷方式外观",
       "style": "背景颜色",
       "iconRounding": "图标圆角",
-      "backgroundRounding": "背景圆角"
+      "backgroundRounding": "背景圆角",
+      "connectedBackground": "连接背景"
     },
     "wallpaper": {
       "title": "壁纸",

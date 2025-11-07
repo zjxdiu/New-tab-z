@@ -56,6 +56,7 @@ const Index = () => {
   const [shortcutIconRounding, setShortcutIconRounding] = useLocalStorage<number>('shortcutIconRounding', 100);
   const [shortcutBgRounding, setShortcutBgRounding] = useLocalStorage<number>('shortcutBgRounding', 25);
   const [openInNewTab, setOpenInNewTab] = useLocalStorage<boolean>('openInNewTab', true);
+  const [connectedShortcutBackground, setConnectedShortcutBackground] = useLocalStorage<boolean>('connectedShortcutBackground', false);
 
   const shortcutBackground = useMemo(() => {
     if (shortcutBgOpacity === 0) return 'transparent';
@@ -190,6 +191,7 @@ const Index = () => {
               shortcutIconRounding={shortcutIconRounding}
               shortcutBgRounding={shortcutBgRounding}
               openInNewTab={openInNewTab}
+              connectedShortcutBackground={connectedShortcutBackground}
             />
           </div>
         </main>
@@ -214,6 +216,8 @@ const Index = () => {
           setShortcutBgRounding={setShortcutBgRounding}
           openInNewTab={openInNewTab}
           setOpenInNewTab={setOpenInNewTab}
+          connectedShortcutBackground={connectedShortcutBackground}
+          setConnectedShortcutBackground={setConnectedShortcutBackground}
           onImport={handleImportRequest}
         />
         <EditShortcutDialog

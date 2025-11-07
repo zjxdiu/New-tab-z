@@ -30,7 +30,8 @@
       "title": "Shortcut Appearance",
       "style": "Background",
       "iconRounding": "Icon Rounding",
-      "backgroundRounding": "Background Rounding"
+      "backgroundRounding": "Background Rounding",
+      "connectedBackground": "Connected Background"
     },
     "wallpaper": {
       "title": "Wallpaper",
