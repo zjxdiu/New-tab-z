@@ -56,9 +56,9 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   wallpaperConfig,
   setWallpaperConfig,
   shortcutBgColor,
-  setBgColor: setShortcutBgColor, // Renamed for clarity with ShortcutAppearanceSettings
+  setShortcutBgColor, // Corrected destructuring
   shortcutBgOpacity,
-  setBgOpacity: setShortcutBgOpacity, // Renamed for clarity with ShortcutAppearanceSettings
+  setShortcutBgOpacity, // Corrected destructuring
   shortcutBackground,
   shortcutIconRounding,
   setShortcutIconRounding,
