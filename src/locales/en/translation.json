@@ -29,7 +29,8 @@
     "appearance": {
       "title": "Shortcut Appearance",
       "style": "Background",
-      "rounding": "Rounding"
+      "iconRounding": "Icon Rounding",
+      "backgroundRounding": "Background Rounding"
     },
     "wallpaper": {
       "title": "Wallpaper",

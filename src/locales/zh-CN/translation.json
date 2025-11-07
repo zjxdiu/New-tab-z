@@ -29,7 +29,8 @@
     "appearance": {
       "title": "快捷方式外观",
       "style": "背景颜色",
-      "rounding": "圆角"
+      "iconRounding": "图标圆角",
+      "backgroundRounding": "背景圆角"
     },
     "wallpaper": {
       "title": "壁纸",

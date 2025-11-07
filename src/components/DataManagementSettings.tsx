@@ -16,6 +16,7 @@ const EXPORTABLE_KEYS = [
   'shortcutBgColor',
   'shortcutBgOpacity',
   'shortcutIconRounding',
+  'shortcutBgRounding',
   'theme',
   'i18nextLng',
   'openInNewTab',

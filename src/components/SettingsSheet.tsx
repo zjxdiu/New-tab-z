@@ -38,6 +38,8 @@ interface SettingsSheetProps {
   setShortcuts: (shortcuts: Shortcut[]) => void;
   shortcutIconRounding: number;
   setShortcutIconRounding: (rounding: number) => void;
+  shortcutBgRounding: number;
+  setShortcutBgRounding: (rounding: number) => void;
   openInNewTab: boolean;
   setOpenInNewTab: (open: boolean) => void;
   onImport: (settings: object) => void;
@@ -58,6 +60,8 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   shortcutBackground,
   shortcutIconRounding,
   setShortcutIconRounding,
+  shortcutBgRounding,
+  setShortcutBgRounding,
   openInNewTab,
   setOpenInNewTab,
   onImport,
@@ -65,9 +69,9 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   const { t } = useTranslation();
   const settingsButtonBorderRadius = useMemo(() => {
     const maxRadius = 20; // half of width/height (40px for size="icon")
-    const radius = maxRadius * (1 - shortcutIconRounding / 100);
+    const radius = maxRadius * (shortcutBgRounding / 100);
     return `${radius}px`;
-  }, [shortcutIconRounding]);
+  }, [shortcutBgRounding]);
 
   return (
     <Sheet>
@@ -150,6 +154,8 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
             setBgOpacity={setShortcutBgOpacity}
             shortcutIconRounding={shortcutIconRounding}
             setShortcutIconRounding={setShortcutIconRounding}
+            shortcutBgRounding={shortcutBgRounding}
+            setShortcutBgRounding={setShortcutBgRounding}
           />
 
           <WallpaperSettings

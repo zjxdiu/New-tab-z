@@ -13,6 +13,8 @@ interface ShortcutAppearanceSettingsProps {
   setBgOpacity: (opacity: number) => void;
   shortcutIconRounding: number;
   setShortcutIconRounding: (rounding: number) => void;
+  shortcutBgRounding: number;
+  setShortcutBgRounding: (rounding: number) => void;
 }
 
 export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProps> = ({
@@ -22,6 +24,8 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
   setBgOpacity,
   shortcutIconRounding,
   setShortcutIconRounding,
+  shortcutBgRounding,
+  setShortcutBgRounding,
 }) => {
   const { t } = useTranslation();
   return (
@@ -70,12 +74,12 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
         </div>
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="rounding" className="text-right col-span-1">
-          {t('settings.appearance.rounding')}
+        <Label htmlFor="icon-rounding" className="text-right col-span-1">
+          {t('settings.appearance.iconRounding')}
         </Label>
         <div className="col-span-3 flex items-center gap-4">
           <Slider
-            id="rounding"
+            id="icon-rounding"
             min={0}
             max={100}
             step={1}
@@ -84,6 +88,24 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
           />
           <span className="text-sm text-muted-foreground w-10 text-center">
             {shortcutIconRounding}
+          </span>
+        </div>
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="bg-rounding" className="text-right col-span-1">
+          {t('settings.appearance.backgroundRounding')}
+        </Label>
+        <div className="col-span-3 flex items-center gap-4">
+          <Slider
+            id="bg-rounding"
+            min={0}
+            max={100}
+            step={1}
+            value={[shortcutBgRounding]}
+            onValueChange={(value) => setShortcutBgRounding(value[0])}
+          />
+          <span className="text-sm text-muted-foreground w-10 text-center">
+            {shortcutBgRounding}
           </span>
         </div>
       </div>

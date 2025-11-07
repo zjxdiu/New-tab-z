@@ -16,18 +16,25 @@ interface ShortcutIconProps {
   onDelete: () => void;
   backgroundColor: string;
   shortcutIconRounding: number;
+  shortcutBgRounding: number;
   openInNewTab: boolean;
 }
 
-const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete, backgroundColor, shortcutIconRounding, openInNewTab }) => {
+const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete, backgroundColor, shortcutIconRounding, shortcutBgRounding, openInNewTab }) => {
   const { t } = useTranslation();
   const { href, iconUrl, name } = shortcut;
 
-  const borderRadius = useMemo(() => {
+  const iconBorderRadius = useMemo(() => {
     const maxRadius = 24; // half of width/height (48px)
-    const radius = maxRadius * (1 - shortcutIconRounding / 100);
+    const radius = maxRadius * (shortcutIconRounding / 100);
     return `${radius}px`;
   }, [shortcutIconRounding]);
+
+  const bgBorderRadius = useMemo(() => {
+    const maxRadius = 16; // Corresponds to a large rounding value
+    const radius = maxRadius * (shortcutBgRounding / 100);
+    return `${radius}px`;
+  }, [shortcutBgRounding]);
 
   return (
     <div className="relative">
@@ -35,12 +42,12 @@ const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete,
         href={href}
         target={openInNewTab ? '_blank' : undefined}
         rel={openInNewTab ? 'noopener noreferrer' : undefined}
-        className="flex flex-col items-center justify-center p-2 rounded-lg transition-all group"
-        style={{ backgroundColor }}
+        className="flex flex-col items-center justify-center p-2 transition-all group"
+        style={{ backgroundColor, borderRadius: bgBorderRadius }}
       >
         <div
           className="w-12 h-12 flex items-center justify-center bg-gray-200/50 dark:bg-gray-700/50 mb-2 group-hover:shadow-md transition-shadow"
-          style={{ borderRadius }}
+          style={{ borderRadius: iconBorderRadius }}
         >
           <img src={iconUrl} alt={name} className="w-8 h-8 object-contain" />
         </div>

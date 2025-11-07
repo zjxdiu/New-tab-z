@@ -53,7 +53,8 @@ const Index = () => {
   const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
   const [shortcutBgColor, setShortcutBgColor] = useLocalStorage<string>('shortcutBgColor', '#ffffff');
   const [shortcutBgOpacity, setShortcutBgOpacity] = useLocalStorage<number>('shortcutBgOpacity', 0.1);
-  const [shortcutIconRounding, setShortcutIconRounding] = useLocalStorage<number>('shortcutIconRounding', 0);
+  const [shortcutIconRounding, setShortcutIconRounding] = useLocalStorage<number>('shortcutIconRounding', 100);
+  const [shortcutBgRounding, setShortcutBgRounding] = useLocalStorage<number>('shortcutBgRounding', 25);
   const [openInNewTab, setOpenInNewTab] = useLocalStorage<boolean>('openInNewTab', true);
 
   const shortcutBackground = useMemo(() => {
@@ -187,6 +188,7 @@ const Index = () => {
               onDelete={handleDelete}
               shortcutBackground={shortcutBackground}
               shortcutIconRounding={shortcutIconRounding}
+              shortcutBgRounding={shortcutBgRounding}
               openInNewTab={openInNewTab}
             />
           </div>
@@ -208,6 +210,8 @@ const Index = () => {
           shortcutBackground={shortcutBackground}
           shortcutIconRounding={shortcutIconRounding}
           setShortcutIconRounding={setShortcutIconRounding}
+          shortcutBgRounding={shortcutBgRounding}
+          setShortcutBgRounding={setShortcutBgRounding}
           openInNewTab={openInNewTab}
           setOpenInNewTab={setOpenInNewTab}
           onImport={handleImportRequest}
