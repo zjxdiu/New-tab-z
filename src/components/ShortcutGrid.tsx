@@ -1,7 +1,6 @@
 import React from 'react';
 import ShortcutIcon from './ShortcutIcon';
 import { Shortcut } from '@/pages/Index';
-import { cn } from '@/lib/utils';
 
 interface ShortcutGridProps {
   shortcuts: Shortcut[];
@@ -12,42 +11,18 @@ interface ShortcutGridProps {
   shortcutIconRounding: number;
   shortcutBgRounding: number;
   openInNewTab: boolean;
-  connectedShortcutBackground: boolean;
 }
 
-const ShortcutGrid: React.FC<ShortcutGridProps> = ({ 
-  shortcuts, 
-  columns = 5, 
-  onEdit, 
-  onDelete, 
-  shortcutBackground, 
-  shortcutIconRounding, 
-  shortcutBgRounding, 
-  openInNewTab,
-  connectedShortcutBackground,
-}) => {
+const ShortcutGrid: React.FC<ShortcutGridProps> = ({ shortcuts, columns = 5, onEdit, onDelete, shortcutBackground, shortcutIconRounding, shortcutBgRounding, openInNewTab }) => {
   const sortedShortcuts = React.useMemo(
     () => [...shortcuts].sort((a, b) => a.position - b.position),
     [shortcuts]
   );
 
-  const bgBorderRadius = React.useMemo(() => {
-    const maxRadius = 16; // Corresponds to a large rounding value for the grid container
-    const radius = maxRadius * (shortcutBgRounding / 100);
-    return `${radius}px`;
-  }, [shortcutBgRounding]);
-
   return (
     <div
-      className={cn(
-        "grid",
-        connectedShortcutBackground ? "gap-0 p-2" : "gap-4"
-      )}
-      style={{ 
-        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-        backgroundColor: connectedShortcutBackground ? shortcutBackground : 'transparent',
-        borderRadius: connectedShortcutBackground ? bgBorderRadius : '0px',
-      }}
+      className="grid gap-4"
+      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
     >
       {sortedShortcuts.map((shortcut) => (
         <ShortcutIcon
@@ -55,9 +30,9 @@ const ShortcutGrid: React.FC<ShortcutGridProps> = ({
           shortcut={shortcut}
           onEdit={() => onEdit(shortcut)}
           onDelete={() => onDelete(shortcut)}
-          backgroundColor={connectedShortcutBackground ? 'transparent' : shortcutBackground}
+          backgroundColor={shortcutBackground}
           shortcutIconRounding={shortcutIconRounding}
-          shortcutBgRounding={connectedShortcutBackground ? 0 : shortcutBgRounding}
+          shortcutBgRounding={shortcutBgRounding}
           openInNewTab={openInNewTab}
         />
       ))}

@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-import { Switch } from '@/components/ui/switch';
 
 interface ShortcutAppearanceSettingsProps {
   bgColor: string;
@@ -16,8 +15,6 @@ interface ShortcutAppearanceSettingsProps {
   setShortcutIconRounding: (rounding: number) => void;
   shortcutBgRounding: number;
   setShortcutBgRounding: (rounding: number) => void;
-  connectedShortcutBackground: boolean;
-  setConnectedShortcutBackground: (connected: boolean) => void;
 }
 
 export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProps> = ({
@@ -29,8 +26,6 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
   setShortcutIconRounding,
   shortcutBgRounding,
   setShortcutBgRounding,
-  connectedShortcutBackground,
-  setConnectedShortcutBackground,
 }) => {
   const { t } = useTranslation();
   return (
@@ -77,16 +72,6 @@ export const ShortcutAppearanceSettings: React.FC<ShortcutAppearanceSettingsProp
             </span>
           </div>
         </div>
-      </div>
-      <div className="flex items-center justify-between rounded-lg border p-3">
-        <Label htmlFor="connected-background" className="pr-2">
-          {t('settings.appearance.connectedBackground')}
-        </Label>
-        <Switch
-          id="connected-background"
-          checked={connectedShortcutBackground}
-          onCheckedChange={setConnectedShortcutBackground}
-        />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="icon-rounding" className="text-right col-span-1">

@@ -42,8 +42,6 @@ interface SettingsSheetProps {
   setShortcutBgRounding: (rounding: number) => void;
   openInNewTab: boolean;
   setOpenInNewTab: (open: boolean) => void;
-  connectedShortcutBackground: boolean;
-  setConnectedShortcutBackground: (connected: boolean) => void;
   onImport: (settings: object) => void;
 }
 
@@ -56,9 +54,9 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   wallpaperConfig,
   setWallpaperConfig,
   shortcutBgColor,
-  setBgColor: setShortcutBgColor, // Renamed for clarity with ShortcutAppearanceSettings
+  setShortcutBgColor,
   shortcutBgOpacity,
-  setBgOpacity: setShortcutBgOpacity, // Renamed for clarity with ShortcutAppearanceSettings
+  setShortcutBgOpacity,
   shortcutBackground,
   shortcutIconRounding,
   setShortcutIconRounding,
@@ -66,8 +64,6 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
   setShortcutBgRounding,
   openInNewTab,
   setOpenInNewTab,
-  connectedShortcutBackground,
-  setConnectedShortcutBackground,
   onImport,
 }) => {
   const { t } = useTranslation();
@@ -160,8 +156,6 @@ export const SettingsSheet: React.FC<SettingsSheetProps> = ({
             setShortcutIconRounding={setShortcutIconRounding}
             shortcutBgRounding={shortcutBgRounding}
             setShortcutBgRounding={setShortcutBgRounding}
-            connectedShortcutBackground={connectedShortcutBackground}
-            setConnectedShortcutBackground={setConnectedShortcutBackground}
           />
 
           <WallpaperSettings

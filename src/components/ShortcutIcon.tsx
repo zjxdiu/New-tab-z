@@ -9,7 +9,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { MoreVertical } from 'lucide-react';
 import { Shortcut } from '@/pages/Index';
-import { cn } from '@/lib/utils';
 
 interface ShortcutIconProps {
   shortcut: Shortcut;
@@ -43,10 +42,7 @@ const ShortcutIcon: React.FC<ShortcutIconProps> = ({ shortcut, onEdit, onDelete,
         href={href}
         target={openInNewTab ? '_blank' : undefined}
         rel={openInNewTab ? 'noopener noreferrer' : undefined}
-        className={cn(
-          "flex flex-col items-center justify-center p-2 transition-all group",
-          backgroundColor === 'transparent' ? 'hover:bg-gray-200/10 dark:hover:bg-gray-700/10' : ''
-        )}
+        className="flex flex-col items-center justify-center p-2 transition-all group"
         style={{ backgroundColor, borderRadius: bgBorderRadius }}
       >
         <div
